@@ -5,6 +5,7 @@ Calculatrice console generique en .NET 10 avec UI interactive Spectre.Console, a
 ## Fonctionnalites
 
 - Choix du rythme d'animation: `Rapide`, `Normal`, `Cinematique`
+- Memorisation automatique du dernier profil d'animation (stockage local)
 - Choix du type numerique: `int`, `float`, `double`, `decimal`
 - Choix d'operation: `+`, `-`, `/`, `*` (+ `%` pour les entiers)
 - Parsing flexible des decimaux (`12,5` et `12.5`)

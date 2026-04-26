@@ -16,3 +16,4 @@ E:\source\repos\Test NET 10\Test NET 10\bin\Debug\net10.0\Spectre.Console.dll
 E:\source\repos\Test NET 10\Test NET 10\bin\Debug\net10.0\Spectre.Console.Ansi.dll
 E:\source\repos\Test NET 10\Test NET 10\obj\Debug\net10.0\Test NET 10.csproj.AssemblyReference.cache
 e:\source\repos\Test NET 10\Test NET 10\obj\Debug\net10.0\Test NET.0D55AFDB.Up2Date
+E:\source\repos\Test NET 10\Test NET 10\obj\Debug\net10.0\Test NET 10.sourcelink.json

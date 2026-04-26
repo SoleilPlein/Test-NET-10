@@ -103,3 +103,4 @@ E:\source\repos\Test NET 10\Test_NET_10.Tests\obj\Debug\net10.0\Test_NET_10.Test
 E:\source\repos\Test NET 10\Test_NET_10.Tests\obj\Debug\net10.0\ref\Test_NET_10.Tests.dll
 e:\source\repos\Test NET 10\Test_NET_10.Tests\bin\Debug\net10.0\Spectre.Console.dll
 e:\source\repos\Test NET 10\Test_NET_10.Tests\bin\Debug\net10.0\Spectre.Console.Ansi.dll
+e:\source\repos\Test NET 10\Test_NET_10.Tests\obj\Debug\net10.0\Test_NET_10.Tests.sourcelink.json
