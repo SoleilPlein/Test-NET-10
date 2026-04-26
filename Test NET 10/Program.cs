@@ -43,43 +43,33 @@ consoleUi.ConfigureAnimation(selectedAnimationProfile);
 
 string[] numberTypes = ["int", "float", "double", "decimal"];
 
-int numberTypeIndex = consoleUi.ReadSelection(
-	numberTypes,
-	"Choisis le type de nombre.");
-
-if (numberTypeIndex < 0)
+while (true)
 {
-	consoleUi.ShowCancellation();
-	return;
+	int numberTypeIndex = consoleUi.ReadSelection(
+		numberTypes,
+		"Choisis le type de nombre.");
+
+	if (numberTypeIndex < 0)
+	{
+		consoleUi.ShowCancellation();
+		return;
+	}
+
+	string selectedNumberType = numberTypes[numberTypeIndex];
+	string animationProfileLabel = GetAnimationProfileLabel(selectedAnimationProfile);
+
+	Func<Task<bool>> runCalculationAsync = BuildScenario(selectedNumberType, animationProfileLabel, culture, consoleUi);
+	bool shouldContinue = await runCalculationAsync();
+
+	if (!shouldContinue)
+	{
+		return;
+	}
 }
 
-string selectedNumberType = numberTypes[numberTypeIndex];
-
-(OperationEnum[] operations, Func<OperationEnum, Task> runCalculationAsync) = BuildScenario(selectedNumberType, culture, consoleUi);
-int operationIndex = consoleUi.ReadSelection(
-	operations,
-	"Choisis l'operation.",
-	GetSymbol);
-
-if (operationIndex < 0)
-{
-	consoleUi.ShowCancellation();
-	return;
-}
-
-OperationEnum selectedOperation = operations[operationIndex];
-
-consoleUi.ShowSelectionSummary(
-	selectedNumberType,
-	selectedOperation,
-	culture,
-	GetSymbol(selectedOperation),
-	GetAnimationProfileLabel(selectedAnimationProfile));
-
-await runCalculationAsync(selectedOperation);
-
-static (OperationEnum[] operations, Func<OperationEnum, Task> runCalculationAsync) BuildScenario(
+static Func<Task<bool>> BuildScenario(
 	string selectedNumberType,
+	string animationProfileLabel,
 	CultureInfo culture,
 	IConsoleUiService consoleUi)
 {
@@ -87,51 +77,58 @@ static (OperationEnum[] operations, Func<OperationEnum, Task> runCalculationAsyn
 	{
 		case "int":
 			IOperationFactory<int> intFactory = new IntegerOperationFactory<int>();
-			return
-			(
-				intFactory.GetAvailableOperations(),
-				selectedOperation => RunCalculationAsync(intFactory, selectedOperation, culture, consoleUi)
-			);
+			return () => RunCalculationAsync(intFactory, selectedNumberType, animationProfileLabel, culture, consoleUi);
 		case "float":
 			IOperationFactory<float> floatFactory = new NumericOperationFactory<float>();
-			return
-			(
-				floatFactory.GetAvailableOperations(),
-				selectedOperation => RunCalculationAsync(floatFactory, selectedOperation, culture, consoleUi)
-			);
+			return () => RunCalculationAsync(floatFactory, selectedNumberType, animationProfileLabel, culture, consoleUi);
 		case "double":
 			IOperationFactory<double> doubleFactory = new NumericOperationFactory<double>();
-			return
-			(
-				doubleFactory.GetAvailableOperations(),
-				selectedOperation => RunCalculationAsync(doubleFactory, selectedOperation, culture, consoleUi)
-			);
+			return () => RunCalculationAsync(doubleFactory, selectedNumberType, animationProfileLabel, culture, consoleUi);
 		case "decimal":
 			IOperationFactory<decimal> decimalFactory = new NumericOperationFactory<decimal>();
-			return
-			(
-				decimalFactory.GetAvailableOperations(),
-				selectedOperation => RunCalculationAsync(decimalFactory, selectedOperation, culture, consoleUi)
-			);
+			return () => RunCalculationAsync(decimalFactory, selectedNumberType, animationProfileLabel, culture, consoleUi);
 		default:
 			throw new InvalidOperationException("Type de nombre non pris en charge.");
 	}
 }
 
-static async Task RunCalculationAsync<T>(
+static async Task<bool> RunCalculationAsync<T>(
 	IOperationFactory<T> operationFactory,
-	OperationEnum selectedOperation,
+	string selectedNumberType,
+	string animationProfileLabel,
 	CultureInfo culture,
 	IConsoleUiService consoleUi)
 	where T : struct, INumber<T>
 {
 	T a = consoleUi.ReadNumber<T>("Saisis le premier nombre: ", culture);
+
+	OperationEnum[] operations = operationFactory.GetAvailableOperations();
+	int operationIndex = consoleUi.ReadSelection(
+		operations,
+		"Choisis l'operation.",
+		GetSymbol);
+
+	if (operationIndex < 0)
+	{
+		consoleUi.ShowCancellation();
+		return false;
+	}
+
+	OperationEnum selectedOperation = operations[operationIndex];
+
+	consoleUi.ShowSelectionSummary(
+		selectedNumberType,
+		selectedOperation,
+		culture,
+		GetSymbol(selectedOperation),
+		animationProfileLabel);
+
 	T b = consoleUi.ReadNumber<T>("Saisis le second nombre: ", culture);
 
 	if (RequiresNonZeroDivisor(selectedOperation) && b == T.Zero)
 	{
 		consoleUi.ShowError("Impossible de diviser par 0.");
-		return;
+		return true;
 	}
 
 	T result = await consoleUi.RunWithStatusAsync(
@@ -143,6 +140,7 @@ static async Task RunCalculationAsync<T>(
 		});
 
 	consoleUi.ShowResult(a, GetSymbol(selectedOperation), b, result, culture);
+	return true;
 }
 
 static bool RequiresNonZeroDivisor(OperationEnum operation)

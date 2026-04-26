@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\source\\repos\\Test NET 10\\Test NET 10\\Test NET 10.csproj": {}
+    "E:\\source\\repos\\Test NET 10\\Test NET 10\\Test NET 10.csproj": {}
   },
   "projects": {
-    "e:\\source\\repos\\Test NET 10\\Test NET 10\\Test NET 10.csproj": {
+    "E:\\source\\repos\\Test NET 10\\Test NET 10\\Test NET 10.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\source\\repos\\Test NET 10\\Test NET 10\\Test NET 10.csproj",
+        "projectUniqueName": "E:\\source\\repos\\Test NET 10\\Test NET 10\\Test NET 10.csproj",
         "projectName": "Test NET 10",
-        "projectPath": "e:\\source\\repos\\Test NET 10\\Test NET 10\\Test NET 10.csproj",
+        "projectPath": "E:\\source\\repos\\Test NET 10\\Test NET 10\\Test NET 10.csproj",
         "packagesPath": "C:\\Users\\mrich\\.nuget\\packages\\",
-        "outputPath": "e:\\source\\repos\\Test NET 10\\Test NET 10\\obj\\",
+        "outputPath": "E:\\source\\repos\\Test NET 10\\Test NET 10\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mrich\\AppData\\Roaming\\NuGet\\NuGet.Config",

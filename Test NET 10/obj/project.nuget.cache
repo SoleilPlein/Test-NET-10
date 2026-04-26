@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "V6qQloO195c=",
+  "dgSpecHash": "d0X5JyVf9OI=",
   "success": true,
-  "projectFilePath": "e:\\source\\repos\\Test NET 10\\Test NET 10\\Test NET 10.csproj",
+  "projectFilePath": "E:\\source\\repos\\Test NET 10\\Test NET 10\\Test NET 10.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mrich\\.nuget\\packages\\spectre.console\\0.55.2\\spectre.console.0.55.2.nupkg.sha512",
     "C:\\Users\\mrich\\.nuget\\packages\\spectre.console.ansi\\0.55.2\\spectre.console.ansi.0.55.2.nupkg.sha512"
