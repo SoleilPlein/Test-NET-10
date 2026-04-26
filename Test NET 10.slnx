@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Test NET 10/Test NET 10.csproj" />
+  <Project Path="Test_NET_10.Tests/Test_NET_10.Tests.csproj" />
+</Solution>

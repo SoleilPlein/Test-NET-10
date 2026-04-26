@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "d0X5JyVf9OI=",
+  "success": true,
+  "projectFilePath": "E:\\source\\repos\\Test NET 10\\Test NET 10\\Test NET 10.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mrich\\.nuget\\packages\\spectre.console\\0.55.2\\spectre.console.0.55.2.nupkg.sha512",
+    "C:\\Users\\mrich\\.nuget\\packages\\spectre.console.ansi\\0.55.2\\spectre.console.ansi.0.55.2.nupkg.sha512"
+  ],
+  "logs": []
+}
